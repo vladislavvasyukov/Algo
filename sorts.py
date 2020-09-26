@@ -1,0 +1,85 @@
+def merge_sort(array):
+    if len(array) > 1:
+        mid = len(array) // 2
+        left_half = array[:mid]
+        right_half = array[mid:]
+
+        merge_sort(left_half)
+        merge_sort(right_half)
+
+        i = 0
+        j = 0
+        k = 0
+        while i < len(left_half) and j < len(right_half):
+            if left_half[i] < right_half[j]:
+                array[k] = left_half[i]
+                i = i + 1
+            else:
+                array[k] = right_half[j]
+                j = j + 1
+            k = k + 1
+
+        while i < len(left_half):
+            array[k] = left_half[i]
+            i = i + 1
+            k = k + 1
+
+        while j < len(right_half):
+            array[k] = right_half[j]
+            j = j + 1
+            k = k + 1
+
+
+def shell_sort(array):
+    count = len(array)
+    h = 1
+
+    while h < count // 3:
+        h = 3*h + 1
+
+    while h >= 1:
+        for i in range(h, count):
+            j = i
+            while j >= h and array[j-h] > array[j]:
+                array[j-h], array[j] = array[j], array[j-h]
+                print(array)
+                j -= h
+        h = h // 3
+
+
+def quick_sort(array, left, right):
+    if left < right:
+        mid = partition(array, left, right)
+        quick_sort(array, left, mid-1)
+        quick_sort(array, mid+1, right)
+
+
+def partition(array, left, right):
+    el = array[right]
+    i = left - 1
+    for j in range(left, right):
+        if array[j] < el:
+            i += 1
+            array[j], array[i] = array[i], array[j]
+
+    i += 1
+    array[i], array[right] = array[right], array[i]
+    return i
+
+
+def insertion_sort(array):
+    for i in range(1, len(array)):
+        j = i
+        while j > 0 and data[j] < data[j-1]:
+            data[j - 1], data[j] = data[j], data[j-1]
+            j -= 1
+
+
+if __name__ == '__main__':
+    data = [54, 26, 93, -101, 55, 17, -99, 77, 31, 44, 55, 20]
+    print(data)
+    # merge_sort(data)
+    quick_sort(data, 0, len(data)-1)
+    # insertion_sort(data)
+    # my_shell_sort(data)
+    print(data)
