@@ -54,6 +54,13 @@ def quick_sort(array, left, right):
         quick_sort(array, mid+1, right)
 
 
+def quick_sort_with_partition3(array, left, right):
+    if left < right:
+        m1, m2 = partition3(array, left, right)
+        quick_sort(array, left, m1-1)
+        quick_sort(array, m2+1, right)
+
+
 def partition(array, left, right):
     el = array[right]
     i = left - 1
@@ -67,6 +74,26 @@ def partition(array, left, right):
     return i
 
 
+def partition3(array, left, right):
+    x = array[left]
+    m1, m2 = left, right
+    i = left
+
+    while i <= m2:
+        if array[i] < x:
+            array[i], array[m1] = array[m1], array[i]
+            m1 += 1
+
+        elif array[i] > x:
+            array[i], array[m2] = array[m2], array[i]
+            i -= 1
+            m2 -= 1
+
+        i += 1
+
+    return m1, m2
+
+
 def insertion_sort(array):
     for i in range(1, len(array)):
         j = i
@@ -76,10 +103,11 @@ def insertion_sort(array):
 
 
 if __name__ == '__main__':
-    data = [54, 26, 93, -101, 55, 17, -99, 77, 31, 44, 55, 20]
+    data = [54, 26, 93, -99, 17, 17, -101, 55, 17, -99, 77, 31, 44, 55, 20]
     print(data)
     # merge_sort(data)
-    quick_sort(data, 0, len(data)-1)
+    # quick_sort(data, 0, len(data)-1)
+    quick_sort_with_partition3(data, 0, len(data)-1)
     # insertion_sort(data)
     # my_shell_sort(data)
     print(data)
