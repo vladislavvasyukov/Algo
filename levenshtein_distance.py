@@ -24,12 +24,12 @@ def edit_distance(first, second):
 
 
 def print_matrix(matrix, first, second):
-    print("====================")
+    print("*"*(len(second)+1))
     print(" \t" + " ".join([' \t'] + [a + '\t' for a in second]))
     for i, row in enumerate(matrix):
         tmp = ' \t' if i == 0 else f'{first[i-1]}\t'
         print(' '.join([tmp] + [str(a) + '\t' for a in row]))
-    print("====================")
+    print("*"*(len(second)+1))
 
 
 if __name__ == '__main__':
