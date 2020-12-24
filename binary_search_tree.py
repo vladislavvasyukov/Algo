@@ -163,7 +163,7 @@ class BinarySearchTree:
                 current_node.parent.left_child = None
             else:
                 current_node.parent.right_child = None
-        elif current_node.has_both_children:
+        elif current_node.has_both_children():
             successor = current_node.right_child.find_min()
             successor.splice_out()
             current_node.key = successor.key
