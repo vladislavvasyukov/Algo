@@ -13,3 +13,6 @@ class Queue:
 
     def size(self):
         return len(self)
+
+    def empty(self):
+        return self.size() == 0

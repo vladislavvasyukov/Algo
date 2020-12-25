@@ -194,7 +194,23 @@ class BinarySearchTree:
         self.delete(key)
 
     def get_depth(self):
-        return self.root.get_depth()
+        return self._get_depth(self.root)
+
+    def _get_depth(self, root):
+        if root is None:
+            return 0
+        v1 = self._get_depth(root.left_child)
+        v2 = self._get_depth(root.right_child)
+        return max(v1, v2) + 1
+
+    def get_size(self):
+        return self._get_size(self.root)
+
+    def _get_size(self, root):
+        if root is None:
+            return 0
+
+        return 1 + self._get_size(root.left_child) + self._get_size(root.right_child)
 
     def print_yourself(self):
         current_level = [self.root]
@@ -228,6 +244,19 @@ class BinarySearchTree:
             current_level = next_level
             cl += 1
 
+    def level_traversal(self):
+        if self.root is None:
+            return
+
+        array = [self.root]
+        while array:
+            node = array.pop(0)
+            print(node.key, end=" ")
+            if node.left_child:
+                array.append(node.left_child)
+            if node.right_child:
+                array.append(node.right_child)
+
 
 if __name__ == '__main__':
     tree = BinarySearchTree()
@@ -246,7 +275,16 @@ if __name__ == '__main__':
     tree[47] = 'asdf'
 
     tree.print_yourself()
+    print(f'Size={tree.get_size()}')
+    print(f'Depth={tree.get_depth()}')
+    tree.level_traversal()
+
+    print('\n\n===============\n')
 
     del tree[30]
     del tree[31]
+
     tree.print_yourself()
+    print(f'Size={tree.get_size()}')
+    print(f'Depth={tree.get_depth()}')
+    tree.level_traversal()
