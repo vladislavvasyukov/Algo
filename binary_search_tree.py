@@ -75,11 +75,6 @@ class TreeNode:
             current = current.left_child
         return current
 
-    def get_depth(self):
-        v1 = self.left_child.get_depth() if self.has_left_child() else 0
-        v2 = self.right_child.get_depth() if self.has_right_child() else 0
-        return max(v1, v2) + 1
-
 
 class BinarySearchTree:
     def __init__(self):
