@@ -122,20 +122,45 @@ class SingleLinkedList:
     def add_before(self, node, key):
         """adds key before node"""
 
-        if node == self.head.next:
-            new_node = Node(key=key)
-            new_node.next = self.head
+        if self.head == node:
+            new_node = Node(key=key, next=self.head)
             self.head = new_node
-            return
 
-        current = self.head
-        while current.next is not None:
-            if current.next.next == node:
-                break
-            current = current.next
+        elif self.head.next == node:
+            new_node = Node(key, next=self.head.next)
+            self.head.next = new_node
 
-        new_node = Node(key=key, next=current.next)
-        current.next = new_node
+        else:
+            prev_node = self.head
+            current_node = self.head.next
+            while current_node is not None:
+                if current_node == node:
+                    break
+                prev_node = current_node
+                current_node = current_node.next
+
+            if current_node is None:
+                raise Exception('Some shit')
+
+            new_node = Node(key=key, next=current_node)
+            prev_node.next = new_node
+
+
+    # def add_before(self, node, key):
+    #     if node == self.head.next:
+    #         new_node = Node(key=key)
+    #         new_node.next = self.head
+    #         self.head = new_node
+    #         return
+    #
+    #     current = self.head
+    #     while current.next is not None:
+    #         if current.next.next == node:
+    #             break
+    #         current = current.next
+    #
+    #     new_node = Node(key=key, next=current.next)
+    #     current.next = new_node
 
     def add_after(self, node, key):
         """adds key after node"""
@@ -151,5 +176,71 @@ class SingleLinkedList:
         else:
             n = self.head
             while n is not None:
-                print(n.item, " ")
+                print(n.key, end=" ")
                 n = n.next
+        print()
+
+
+if __name__ == '__main__':
+    sl = SingleLinkedList()
+    sl.push_back(1)
+    sl.push_back(2)
+    sl.push_back(3)
+    sl.push_back(4)
+    sl.push_back(5)
+    sl.traverse_list()
+
+    print('\n=============\n')
+
+    el = sl.pop_front()
+    print(el)
+    sl.traverse_list()
+
+    print('\n=============\n')
+
+    el = sl.pop_back()
+    print(el)
+    sl.traverse_list()
+
+    print('\n=============\n')
+
+    sl.push_front(100)
+    sl.traverse_list()
+
+    print('\n=============\n')
+
+    print(sl.top_front())
+    print(sl.top_back())
+
+    print('\n=============\n')
+
+    print(sl.find(100))
+    print(sl.find(500))
+
+    print('\n=============\n')
+
+    sl.erase(100)
+    sl.traverse_list()
+
+    print('\n=============\n')
+
+    print(sl.empty())
+
+    print('\n=============\n')
+
+    sl.push_front(334)
+    sl.push_front(78)
+    sl.push_back(96)
+    sl.push_back(45)
+
+    sl.traverse_list()
+
+    print()
+    print(f'add 66 after = {sl.head.next.next.key}')
+    sl.add_after(key=66, node=sl.head.next.next)
+
+    sl.traverse_list()
+    print(f'\nadd 15 before = {sl.head.next.key}')
+    sl.add_before(key=15, node=sl.head.next)
+
+    sl.traverse_list()
