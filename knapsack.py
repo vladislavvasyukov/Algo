@@ -30,6 +30,18 @@ def knapsack_without_repetitions(total_weight, elements):
     return matrix[total_weight][len(elements)]
 
 
+def knapsack_with_repetitions(total_weight, elements):
+    result = [0] * (total_weight+1)
+    for weight in range(1, total_weight+1):
+        for element in elements:
+            if weight >= element.weight:
+                value = result[weight-element.weight] + element.value
+                if value > result[weight]:
+                    result[weight] = value
+
+    return result[total_weight]
+
+
 if __name__ == '__main__':
     Element = namedtuple('Element', ['weight', 'value'])
     elements = [
@@ -39,3 +51,4 @@ if __name__ == '__main__':
         Element(value=9, weight=2),
     ]
     print(knapsack_without_repetitions(10, elements))
+    print(knapsack_with_repetitions(10, elements))
