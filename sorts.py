@@ -1,3 +1,6 @@
+from bin_heap import BinHeap
+
+
 def merge_sort(array):
     if len(array) > 1:
         mid = len(array) // 2
@@ -107,7 +110,8 @@ if __name__ == '__main__':
     print(data)
     # merge_sort(data)
     # quick_sort(data, 0, len(data)-1)
-    quick_sort_with_partition3(data, 0, len(data)-1)
+    # quick_sort_with_partition3(data, 0, len(data)-1)
+    BinHeap().heap_sort(data)
     # insertion_sort(data)
     # my_shell_sort(data)
     print(data)
