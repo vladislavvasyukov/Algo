@@ -53,3 +53,40 @@ class DoublyLinkedList:
             new_node.prev.next = new_node
         if self.head == node:  # is?
             self.head = new_node
+
+    def traverse_list(self):
+        if self.head is None:
+            print("List has no element")
+            return
+        else:
+            n = self.head
+            while n is not None:
+                print(n.key, end=" ")
+                n = n.next
+        print()
+
+
+if __name__ == '__main__':
+    dll = DoublyLinkedList()
+    dll.push_back(3)
+    dll.push_back(45)
+    dll.push_back(0)
+    dll.push_back(-4)
+    dll.push_back(100)
+    dll.push_back(43)
+    dll.push_back(19)
+    dll.traverse_list()
+
+    dll.pop_back()
+    dll.pop_back()
+    dll.traverse_list()
+
+    dll.add_before(node=dll.head, key=5)
+    dll.add_before(node=dll.head.next.next, key=17)
+    dll.add_before(node=dll.tail, key=111)
+    dll.traverse_list()
+
+    dll.add_after(node=dll.head, key=22)
+    dll.add_after(node=dll.head.next.next, key=234)
+    dll.add_after(node=dll.tail, key=56)
+    dll.traverse_list()
