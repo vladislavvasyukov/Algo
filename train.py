@@ -1,4 +1,4 @@
-from stack import Stack
+from data_structures.stack import Stack
 
 
 def infix_to_postfix(string):

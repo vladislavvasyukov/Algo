@@ -1,4 +1,4 @@
-from graph import GraphForBFS
+from data_structures.graph import GraphForBFS
 
 
 def build_graph(word_file):
