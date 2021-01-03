@@ -53,11 +53,7 @@ class SingleLinkedList:
         if self.head is None:
             raise Exception("top_back from empty list")
 
-        current = self.head
-        while current.next is not None:
-            current = current.next
-
-        return current.key
+        return self.tail.key
 
     def pop_back(self):
         """remove back item"""
@@ -227,3 +223,5 @@ if __name__ == '__main__':
     sl.add_before(key=15, node=sl.head.next)
 
     sl.traverse_list()
+
+    print(sl.top_back())
