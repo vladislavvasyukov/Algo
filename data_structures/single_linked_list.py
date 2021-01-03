@@ -77,9 +77,6 @@ class SingleLinkedList:
     def find(self, key):
         """is key in list?"""
 
-        if self.head is None:
-            return False
-
         current = self.head
         while current is not None:
             if current.key == key:
@@ -97,6 +94,8 @@ class SingleLinkedList:
 
         if self.head.key == key:
             self.head = self.head.next
+            if self.head is None:
+                self.tail = None
             return
 
         current = self.head
@@ -109,6 +108,8 @@ class SingleLinkedList:
             raise Exception("item not found in the list")
         else:
             current.next = current.next.next
+            if current.next is None:
+                self.tail = current
 
     def empty(self):
         """empty list?"""
