@@ -1,4 +1,4 @@
-from bin_heap import BinHeap
+from data_structures.bin_heap import BinHeap
 
 
 def merge_sort(array):
