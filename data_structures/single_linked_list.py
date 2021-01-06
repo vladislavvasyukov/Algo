@@ -119,14 +119,10 @@ class SingleLinkedList:
     def add_before(self, node, key):
         """adds key before node"""
 
+        new_node = Node(key=key, next=node)
+
         if self.head == node:
-            new_node = Node(key=key, next=self.head)
             self.head = new_node
-
-        elif self.head.next == node:
-            new_node = Node(key, next=self.head.next)
-            self.head.next = new_node
-
         else:
             prev_node = self.head
             current_node = self.head.next
@@ -136,10 +132,6 @@ class SingleLinkedList:
                 prev_node = current_node
                 current_node = current_node.next
 
-            if current_node is None:
-                raise Exception('Some shit')
-
-            new_node = Node(key=key, next=current_node)
             prev_node.next = new_node
 
     def add_after(self, node, key):
