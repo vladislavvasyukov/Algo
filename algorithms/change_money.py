@@ -1,7 +1,6 @@
-import math
-
-
 def change_money(money, coins):
+    import math
+
     min_count_coins = [0] + [math.inf] * money
     for m in range(1, money+1):
         for coin in coins:

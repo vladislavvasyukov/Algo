@@ -124,15 +124,14 @@ class SingleLinkedList:
         if self.head == node:
             self.head = new_node
         else:
-            prev_node = self.head
-            current_node = self.head.next
-            while current_node is not None:
-                if current_node == node:
+            current_node = self.head
+            while current_node.next is not None:
+                if current_node.next == node:
                     break
-                prev_node = current_node
-                current_node = current_node.next
+                else:
+                    current_node = current_node.next
 
-            prev_node.next = new_node
+            current_node.next = new_node
 
     def add_after(self, node, key):
         """adds key after node"""
