@@ -1,5 +1,5 @@
-from data_structures.queue import Queue
-from data_structures.vertex import Vertex, VertexForBFS
+from queue import Queue
+from vertex import Vertex, VertexForBFS
 
 
 class Graph:
@@ -86,21 +86,12 @@ class GraphForBFS(Graph):
                     vertex_queue.enqueue(nbr)
             current_vertex.color = 'black'
 
-    @staticmethod
-    def my_bfs(start):
-        queue = Queue()
-        start.prev_vertex = None
-        start.distance = 0
-        queue.enqueue(start)
-        while len(queue) > 0:
-            current = queue.dequeue()
-            for nbr in current.get_connections():
-                if nbr.color == 'white':
-                    nbr.color = 'gray'
-                    nbr.distance = current.distance + 1
-                    nbr.prev_vertex = current
-                    queue.enqueue(nbr)
-            current.color = 'black'
+    def traverse(self, data):
+        vertex = self.get_vertex(data)
+        while vertex.prev_vertex:
+            print(vertex.get_id())
+            vertex = vertex.prev_vertex
+        print(vertex.get_id())
 
 
 if __name__ == '__main__':
@@ -118,3 +109,8 @@ if __name__ == '__main__':
     g.add_edge(5, 4, 8)
     g.add_edge(5, 2, 1)
     g.print_yourself()
+
+    g2 = GraphForBFS.build_graph('words_file.txt')
+
+    g2.bfs(g2.get_vertex('foul'))
+    g2.traverse('sale')
