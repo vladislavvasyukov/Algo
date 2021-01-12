@@ -15,10 +15,10 @@ class BinHeap:
 
     def sift_down(self, i):
         while True:
-            max_index = self.get_max_child_index(i)
-            if i != max_index:
-                self.heap_list[i], self.heap_list[max_index] = self.heap_list[max_index], self.heap_list[i]
-                i = max_index
+            max_child_index = self.get_max_child_index(i)
+            if i != max_child_index:
+                self.heap_list[i], self.heap_list[max_child_index] = self.heap_list[max_child_index], self.heap_list[i]
+                i = max_child_index
             else:
                 break
 
@@ -27,17 +27,17 @@ class BinHeap:
         Возвращает индекс меньшего из двух потомков
         """
 
-        max_index = i
+        max_child_index = i
 
         left_child_index = 2 * i
-        if left_child_index <= self.current_size and self.heap_list[left_child_index] > self.heap_list[max_index]:
-            max_index = left_child_index
+        if left_child_index <= self.current_size and self.heap_list[left_child_index] > self.heap_list[max_child_index]:
+            max_child_index = left_child_index
 
         right_child_index = 2 * i + 1
-        if right_child_index <= self.current_size and self.heap_list[right_child_index] > self.heap_list[max_index]:
-            max_index = right_child_index
+        if right_child_index <= self.current_size and self.heap_list[right_child_index] > self.heap_list[max_child_index]:
+            max_child_index = right_child_index
 
-        return max_index
+        return max_child_index
 
     def insert(self, k):
         """
@@ -53,8 +53,8 @@ class BinHeap:
         """
         max_value = self.heap_list[self.FIRST_ELEMENT_INDEX]
         self.heap_list[self.FIRST_ELEMENT_INDEX] = self.heap_list[self.current_size]
-        self.current_size -= 1
         self.heap_list.pop()
+        self.current_size -= 1
         self.sift_down(self.FIRST_ELEMENT_INDEX)
         return max_value
 

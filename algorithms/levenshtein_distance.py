@@ -33,6 +33,7 @@ def print_matrix(matrix, first, second):
 
 
 if __name__ == '__main__':
+    print("Input two words:")
     first_word = input()
     second_word = input()
     print(edit_distance(first_word, second_word))
