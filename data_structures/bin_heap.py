@@ -79,35 +79,39 @@ class BinHeap:
             heap.insert(a)
         return heap
 
-    def heap_sort(self, array):
-        self.heap_list = array
-        self.current_size = len(array)
+    @classmethod
+    def create_heap_from_array(cls, array):
+        heap = cls()
+        heap.heap_list = array
+        heap.current_size = len(array)
         array.insert(0, 0)
 
-        for i in range(self.current_size // 2, 0, -1):
-            self.sift_down(i)
+        for i in range(heap.current_size // 2, 0, -1):
+            bin_heap.sift_down(i)
 
-        for i in range(self.current_size-1):
-            tmp = self.heap_list[self.FIRST_ELEMENT_INDEX]
-            self.heap_list[self.FIRST_ELEMENT_INDEX] = self.heap_list[self.current_size]
-            self.heap_list[self.current_size] = tmp
+        return heap
 
-            self.current_size -= 1
-            self.sift_down(self.FIRST_ELEMENT_INDEX)
+    @classmethod
+    def heap_sort(cls, array):
+        heap = cls.create_heap_from_array(array)
+
+        for i in range(heap.current_size-1):
+            tmp = heap.heap_list[heap.FIRST_ELEMENT_INDEX]
+            heap.heap_list[heap.FIRST_ELEMENT_INDEX] = heap.heap_list[heap.current_size]
+            heap.heap_list[heap.current_size] = tmp
+
+            heap.current_size -= 1
+            heap.sift_down(heap.FIRST_ELEMENT_INDEX)
 
         array.pop(0)
 
-    def partial_sort(self, array, count_elements):
-        self.heap_list = array
-        self.current_size = len(array)
-        array.insert(0, 0)
-
-        for i in range(self.current_size // 2, 0, -1):
-            self.sift_down(i)
+    @classmethod
+    def partial_sort(cls, array, count_elements):
+        heap = cls.create_heap_from_array(array)
 
         result = []
         for i in range(1, count_elements + 1):
-            result.append(self.extract_max())
+            result.append(heap.extract_max())
 
         return result
 
@@ -116,7 +120,11 @@ if __name__ == '__main__':
     bin_heap = BinHeap.create([33, 17, 27, 14, 18, 9, 5, 3, 11, 19, 21, 20, 22])
 
     print(bin_heap.heap_list)
-    print(bin_heap.partial_sort([33, 17, 27, 14, 18, 9, 5, 3, 11, 19, 21, 20, 22], 3))
+    print(BinHeap.partial_sort([33, 17, 27, 14, 18, 9, 5, 3, 11, 19, 21, 20, 22], 3))
+
+    arr = [33, 17, 27, 14, 18, 9, 5, 3, 11, 19, 21, 20, 22]
+    BinHeap.heap_sort(arr)
+    print(arr)
 
     # print(bin_heap.extract_max())
     # print(bin_heap.extract_max())
