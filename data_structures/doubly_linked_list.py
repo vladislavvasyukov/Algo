@@ -15,12 +15,11 @@ class DoublyLinkedList:
         if self.head is None:
             raise Exception("pop_back from empty list")
 
+        key = self.tail.key
         if self.head == self.tail:
-            key = self.head.key
             self.head = None
             self.tail = None
         else:
-            key = self.tail.key
             self.tail = self.tail.prev
             self.tail.next = None
 

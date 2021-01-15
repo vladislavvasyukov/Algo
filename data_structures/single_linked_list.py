@@ -97,6 +97,8 @@ class SingleLinkedList:
 
         if self.head.key == key:
             self.head = self.head.next
+            if self.head is None:
+                self.tail = None
             return
 
         current = self.head
@@ -109,6 +111,8 @@ class SingleLinkedList:
             raise Exception("item not found in the list")
         else:
             current.next = current.next.next
+            if current.next is None:
+                self.tail = current
 
     def empty(self):
         """empty list?"""
@@ -225,3 +229,13 @@ if __name__ == '__main__':
     sl.traverse_list()
 
     print(sl.top_back())
+
+    print('=====================')
+
+    s4 = SingleLinkedList()
+    s4.push_back(56)
+    s4.push_back(57)
+    s4.push_back(58)
+    s4.erase(58)
+    print(s4.head.key, s4.tail.key)
+    s4.traverse_list()
