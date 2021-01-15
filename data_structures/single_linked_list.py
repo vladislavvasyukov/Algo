@@ -24,6 +24,11 @@ class SingleLinkedList:
 
         return self.head.key
 
+    def top_front(self):
+        if self.head is None:
+            raise Exception
+        return self.head.key
+
     def pop_front(self):
         """remove from item"""
 
@@ -77,9 +82,6 @@ class SingleLinkedList:
     def find(self, key):
         """is key in list?"""
 
-        if self.head is None:
-            return False
-
         current = self.head
         while current is not None:
             if current.key == key:
@@ -122,28 +124,19 @@ class SingleLinkedList:
     def add_before(self, node, key):
         """adds key before node"""
 
+        new_node = Node(key=key, next=node)
+
         if self.head == node:
-            new_node = Node(key=key, next=self.head)
             self.head = new_node
-
-        elif self.head.next == node:
-            new_node = Node(key, next=self.head.next)
-            self.head.next = new_node
-
         else:
-            prev_node = self.head
-            current_node = self.head.next
-            while current_node is not None:
-                if current_node == node:
+            current_node = self.head
+            while current_node.next is not None:
+                if current_node.next == node:
                     break
-                prev_node = current_node
-                current_node = current_node.next
+                else:
+                    current_node = current_node.next
 
-            if current_node is None:
-                raise Exception('Some shit')
-
-            new_node = Node(key=key, next=current_node)
-            prev_node.next = new_node
+            current_node.next = new_node
 
     def add_after(self, node, key):
         """adds key after node"""
