@@ -87,7 +87,7 @@ class BinHeap:
         array.insert(0, 0)
 
         for i in range(heap.current_size // 2, 0, -1):
-            bin_heap.sift_down(i)
+            heap.sift_down(i)
 
         return heap
 
