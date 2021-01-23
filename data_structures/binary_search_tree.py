@@ -75,6 +75,18 @@ class TreeNode:
             current = current.left_child
         return current
 
+    def right_ancestor(self):
+        if self.key < self.parent.key:
+            return self.parent
+        else:
+            return self.parent.right_ancestor()
+
+    def next(self):
+        if self.has_right_child():
+            return self.right_child.find_min()
+        else:
+            return self.right_ancestor()
+
 
 class BinarySearchTree:
     def __init__(self):
@@ -188,6 +200,28 @@ class BinarySearchTree:
     def __delitem__(self, key):
         self.delete(key)
 
+    def find(self, key):
+        return self._find(self.root, key)
+
+    def _find(self, node, key):
+        if node.key == key:
+            return node
+        elif node.key > key:
+            if node.has_left_child():
+                return self._find(node.left_child, key)
+            return node
+        elif node.key < key:
+            return self._find(node.right_child, key)
+
+    def range_search(self, left, right):
+        result = []
+        node = self.find(left)
+        while node.key <= right:
+            if node.key >= left:
+                result.append(node)
+            node = node.next()
+        return result
+
     def get_depth(self):
         return self._get_depth(self.root)
 
@@ -251,6 +285,7 @@ class BinarySearchTree:
                 array.append(node.left_child)
             if node.right_child:
                 array.append(node.right_child)
+        print()
 
 
 if __name__ == '__main__':
@@ -283,3 +318,5 @@ if __name__ == '__main__':
     print(f'Size={tree.get_size()}')
     print(f'Depth={tree.get_depth()}')
     tree.level_traversal()
+    my_range = tree.range_search(5, 43)
+    print([el.key for el in my_range])
