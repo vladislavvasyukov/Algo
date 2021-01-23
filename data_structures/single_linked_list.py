@@ -24,11 +24,6 @@ class SingleLinkedList:
 
         return self.head.key
 
-    def top_front(self):
-        if self.head is None:
-            raise Exception
-        return self.head.key
-
     def pop_front(self):
         """remove from item"""
 
