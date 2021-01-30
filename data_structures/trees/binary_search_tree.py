@@ -188,6 +188,50 @@ class BinarySearchTree:
     def __delitem__(self, key):
         self.delete(key)
 
+    def find(self, key):
+        return self._find(self.root, key)
+
+    def _find(self, node, key):
+        if node.key == key:
+            return node
+
+        if node.key > key and node.has_left_child():
+            return self._find(node.left_child, key)
+        elif node.has_right_child():
+            return self._find(node.right_child, key)
+
+        return node
+
+    def range_search(self, left, right):
+        result = []
+        node = self.find(left)
+        while node.key <= right:
+            if node.key >= left:
+                result.append(node)
+            node = node.next()
+        return result
+
+    @classmethod
+    def merge_with_root(cls, tree_one, tree_two, root):
+        root.left_child = tree_one
+        root.right_child = tree_two
+        tree_one.parent = root
+        tree_two.parent = root
+        return root
+
+    @classmethod
+    def merge(cls, tree_one, tree_two):
+        """
+        Input: tree_one and tree_two with all keys in tree_one's tree smaller than those in tree_two's
+        Output: The root of a new tree with all the elements of both trees
+        """
+        import math
+
+        node = tree_one.find(math.inf)
+        tree_one.delete(node.key)
+        cls.merge_with_root(tree_one, tree_two, node)
+        return node
+
     def get_depth(self):
         return self._get_depth(self.root)
 
