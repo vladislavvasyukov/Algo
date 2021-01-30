@@ -75,6 +75,18 @@ class TreeNode:
             current = current.left_child
         return current
 
+    def next(self):
+        if self.has_right_child():
+            return self.right_child.find_min()
+        else:
+            return self.right_ancestor()
+
+    def right_ancestor(self):
+        if self.key < self.parent.key:
+            return self.parent
+        else:
+            return self.parent.right_ancestor()
+
 
 class BinarySearchTree:
     def __init__(self):
@@ -195,10 +207,12 @@ class BinarySearchTree:
         if node.key == key:
             return node
 
-        if node.key > key and node.has_left_child():
-            return self._find(node.left_child, key)
-        elif node.has_right_child():
-            return self._find(node.right_child, key)
+        if node.key > key:
+            if node.has_left_child():
+                node = self._find(node.left_child, key)
+        else:
+            if node.has_right_child():
+                node = self._find(node.right_child, key)
 
         return node
 
