@@ -1,12 +1,11 @@
-from data_structures.trees.binary_search_tree import BinarySearchTree
+from .binary_search_tree import BinarySearchTree
 
 
 class SplayTree(BinarySearchTree):
-    # https://github.com/Bibeknam/algorithmtutorprograms/blob/master/data-structures/splay-trees/splay_tree.py
 
     def splay(self, node):
-        while node.parent is None:
-            if node.parent.parent is not None:
+        while node.parent is not None:
+            if node.parent.parent is None:
                 if node.is_left_child():
                     # zig rotation
                     self.right_rotate(node.parent)
@@ -17,11 +16,11 @@ class SplayTree(BinarySearchTree):
                 # zig-zig rotation
                 self.right_rotate(node.parent.parent)
                 self.right_rotate(node.parent)
-            elif node.is_right_child() and node.is_right_child():
+            elif node.is_right_child() and node.parent.is_right_child():
                 # zag-zag rotation
                 self.left_rotate(node.parent.parent)
                 self.left_rotate(node.parent)
-            elif node.is_right_child() and node.is_left_child():
+            elif node.is_right_child() and node.parent.is_left_child():
                 # zig-zag rotation
                 self.left_rotate(node.parent)
                 self.right_rotate(node.parent)
@@ -30,7 +29,6 @@ class SplayTree(BinarySearchTree):
                 self.right_rotate(node.parent)
                 self.left_rotate(node.parent)
 
-    # rotate left at node
     def left_rotate(self, node):
         y = node.right_child
         node.right_child = y.left_child
@@ -38,16 +36,15 @@ class SplayTree(BinarySearchTree):
             y.left_child.parent = node
 
         y.parent = node.parent
-
         if node.parent is None:
             self.root = y
+        elif node.is_left_child():
+            node.parent.left_child = y
         else:
-            node = y
-
+            node.parent.right_child = y
         y.left_child = node
         node.parent = y
 
-    # rotate right at node x
     def right_rotate(self, node):
         y = node.left_child
         node.left_child = y.right_child
@@ -57,8 +54,10 @@ class SplayTree(BinarySearchTree):
         y.parent = node.parent
         if node.parent is None:
             self.root = y
+        elif node.is_right_child():
+            node.parent.right_child = y
         else:
-            node = y
+            node.parent.left_child = y
 
         y.right_child = node
         node.parent = y
@@ -68,17 +67,42 @@ class SplayTree(BinarySearchTree):
         self.splay(n)
         return n
 
-    def put(self, key, value):
+    def put(self, key, value=None):
         super().put(key, value)
         self.find(key)
 
     def remove(self, current_node):
         self.splay(current_node.next())
         self.splay(current_node)
-        self.remove(current_node)
+        super().remove(current_node)
 
     def split(self, R, x):
         pass
 
-    def merge(self, R1, R2):
-        pass
+
+"""
+if __name__ == '__main__':
+    tree = SplayTree()
+
+    tree.put(33)
+    tree.put(44)
+    tree.put(67)
+    tree.put(5)
+    tree.put(89)
+    tree.put(41)
+    tree.put(98)
+    tree.put(1)
+    tree.print_yourself()
+    print(tree.find(33))
+    print(tree.find(44))
+    tree.print_yourself()
+    tree.delete(89)
+    tree.delete(67)
+    tree.delete(41)
+    tree.delete(5)
+    tree.print_yourself()
+    tree.delete(98)
+    tree.delete(1)
+    tree.delete(44)
+    tree.print_yourself()
+"""

@@ -163,6 +163,8 @@ if __name__ == "__main__":
     for key in data:
         tree.insert(key)
 
+    tree.display()
+
     for key in [4, 3]:
         tree.delete(key)
 
