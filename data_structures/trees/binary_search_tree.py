@@ -82,6 +82,9 @@ class TreeNode:
             return self.right_ancestor()
 
     def right_ancestor(self):
+        if not self.parent:
+            return self
+
         if self.key < self.parent.key:
             return self.parent
         else:

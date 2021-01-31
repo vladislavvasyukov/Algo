@@ -1,5 +1,4 @@
 class DisjointSets:
-    # TODO написать методы для вычисления количества деревьев и из визуализации
 
     def __init__(self, size=0):
         self.parent = [None for _ in range(size)]
