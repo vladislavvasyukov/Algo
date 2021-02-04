@@ -125,11 +125,8 @@ class SingleLinkedList:
             self.head = new_node
         else:
             current_node = self.head
-            while current_node.next is not None:
-                if current_node.next == node:
-                    break
-                else:
-                    current_node = current_node.next
+            while current_node.next != node is not None:
+                current_node = current_node.next
 
             current_node.next = new_node
 
