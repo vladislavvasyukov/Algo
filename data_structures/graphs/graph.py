@@ -1,5 +1,5 @@
-from queue import Queue
-from vertex import Vertex, VertexForBFS
+from data_structures.graphs.vertex import Vertex, VertexForBFS
+from data_structures.queue import Queue
 
 
 class Graph:
