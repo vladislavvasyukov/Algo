@@ -76,9 +76,6 @@ class SplayTree(BinarySearchTree):
         self.splay(current_node)
         super().remove(current_node)
 
-    def split(self, R, x):
-        pass
-
 
 """
 if __name__ == '__main__':
