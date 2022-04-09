@@ -88,7 +88,7 @@ class BinaryTree:
                 raise Exception('unknown symbol: ', i)
         return e_tree
 
-    def evaluate(self):
+    def evaluate(self) -> int:
         operator_dict = {
             '+': operator.add,
             '-': operator.sub,
@@ -123,7 +123,7 @@ class BinaryTree:
         v2 = self.right_child.get_max_depth() if self.right_child else 0
         return max(v1, v2) + 1
 
-    def pre_order(self):
+    def pre_order(self) -> None:
         """
         Метод осуществляет обход дерева в прямом порядке
         """
