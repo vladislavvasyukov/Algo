@@ -315,32 +315,4 @@ class BinarySearchTree:
 
 
 if __name__ == '__main__':
-    tree = BinarySearchTree()
-    tree[30] = "red"
-    tree[4] = "blue"
-    tree[6] = "yellow"
-    tree[2] = "at"
-    tree[8] = 'df'
-    tree[45] = "as"
-    tree[32] = "asd"
-    tree[31] = "aaa1"
-    tree[33] = "aaa2"
-    tree[34] = "aaa3"
-    tree[3] = "aaa3"
-    tree[48] = 'as'
-    tree[47] = 'asdf'
-
-    tree.print_yourself()
-    print(f'Size={tree.get_size()}')
-    print(f'Depth={tree.get_depth()}')
-    tree.level_traversal()
-
-    print('\n\n===============\n')
-
-    del tree[30]
-    del tree[31]
-
-    tree.print_yourself()
-    print(f'Size={tree.get_size()}')
-    print(f'Depth={tree.get_depth()}')
-    tree.level_traversal()
+    ...

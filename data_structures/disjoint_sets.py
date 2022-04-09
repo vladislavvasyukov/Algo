@@ -44,19 +44,4 @@ class DisjointSets:
 
 
 if __name__ == '__main__':
-    ds = DisjointSets(13)
-
-    for i in range(1, 13):
-        ds.make_set(i)
-
-    ds.union(2, 10)
-    ds.union(7, 5)
-    ds.union(6, 1)
-    ds.union(3, 4)
-    ds.union(5, 11)
-    ds.union(7, 8)
-    ds.union(7, 3)
-    ds.union(12, 2)
-    ds.union(9, 6)
-
-    print('max = ', ds.get_max_tree_high())
+    ...

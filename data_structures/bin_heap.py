@@ -117,20 +117,4 @@ class BinHeap:
 
 
 if __name__ == '__main__':
-    bin_heap = BinHeap.create([33, 17, 27, 14, 18, 9, 5, 3, 11, 19, 21, 20, 22])
-
-    print(bin_heap.heap_list)
-    print(BinHeap.partial_sort([33, 17, 27, 14, 18, 9, 5, 3, 11, 19, 21, 20, 22], 3))
-
-    arr = [33, 17, 27, 14, 18, 9, 5, 3, 11, 19, 21, 20, 22]
-    BinHeap.heap_sort(arr)
-    print(arr)
-
-    # print(bin_heap.extract_max())
-    # print(bin_heap.extract_max())
-    # print(bin_heap.extract_max())
-    # print(bin_heap.heap_list)
-
-    # bin_heap = BinHeap.my_create([33, 17, 27, 14, 18, 9, 5, 11, 19, 21, 20])
-    # print(bin_heap.heap_list)
-
+    ...

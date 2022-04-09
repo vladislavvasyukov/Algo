@@ -157,16 +157,4 @@ class AvlTree:
 
 
 if __name__ == "__main__":
-    tree = AvlTree()
-    data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-
-    for key in data:
-        tree.insert(key)
-
-    tree.display()
-
-    for key in [4, 3]:
-        tree.delete(key)
-
-    print(tree.inorder_traverse())
-    tree.display()
+    ...

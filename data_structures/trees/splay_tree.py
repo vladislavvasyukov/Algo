@@ -77,29 +77,5 @@ class SplayTree(BinarySearchTree):
         super().remove(current_node)
 
 
-"""
 if __name__ == '__main__':
-    tree = SplayTree()
-
-    tree.put(33)
-    tree.put(44)
-    tree.put(67)
-    tree.put(5)
-    tree.put(89)
-    tree.put(41)
-    tree.put(98)
-    tree.put(1)
-    tree.print_yourself()
-    print(tree.find(33))
-    print(tree.find(44))
-    tree.print_yourself()
-    tree.delete(89)
-    tree.delete(67)
-    tree.delete(41)
-    tree.delete(5)
-    tree.print_yourself()
-    tree.delete(98)
-    tree.delete(1)
-    tree.delete(44)
-    tree.print_yourself()
-"""
+    ...

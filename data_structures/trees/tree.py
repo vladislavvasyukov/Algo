@@ -155,25 +155,4 @@ class BinaryTree:
 
 
 if __name__ == '__main__':
-    pt1 = BinaryTree.build_parse_tree("( ( 10 + 5 ) * 3 )")
-    pt2 = BinaryTree.my_build_parse_tree("( ( 3 + 4 ) * ( 5 + 6 ) )")
-    print(pt1.evaluate())
-    # print(pt1.my_evaluate())
-    print(pt2.evaluate())
-
-    # post_order(pt)
-
-    # in_order(pt)
-    # elements = [45, 78, 0, 4, -32, 90, 100, 7, 2323, 1, 89, 90]
-    # etree = BinaryTree(elements[0])
-    # for el in elements[1:]:
-    #     etree.my_add(el)
-    #
-    # etree.post_order()
-    # print('='*100)
-    # etree.in_order()
-
-    # # print(etree.get_max_depth())
-    # counter = MyTreesCounter()
-    # for i in range(12):
-    #     print(i, counter.count(i))
+    ...

@@ -34,5 +34,4 @@ def palindrome_checker(string):
 
 
 if __name__ == '__main__':
-    print(palindrome_checker('ASDDSA'))
-    print(palindrome_checker('asdfasfsf'))
+    ...

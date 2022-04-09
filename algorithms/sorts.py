@@ -108,10 +108,3 @@ def insertion_sort(array):
 if __name__ == '__main__':
     data = [54, 26, 93, -99, 17, 17, -101, 55, 17, -99, 77, 31, 44, 55, 20]
     print(data)
-    # merge_sort(data)
-    # quick_sort(data, 0, len(data)-1)
-    # quick_sort_with_partition3(data, 0, len(data)-1)
-    BinHeap().heap_sort(data)
-    # insertion_sort(data)
-    # my_shell_sort(data)
-    print(data)

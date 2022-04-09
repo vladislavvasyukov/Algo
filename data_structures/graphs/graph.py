@@ -95,22 +95,4 @@ class GraphForBFS(Graph):
 
 
 if __name__ == '__main__':
-    g = Graph()
-    for i in range(6):
-        g.add_vertex(i)
-
-    g.add_edge(0, 1, 5)
-    g.add_edge(0, 5, 2)
-    g.add_edge(1, 2, 4)
-    g.add_edge(2, 3, 9)
-    g.add_edge(3, 4, 7)
-    g.add_edge(3, 5, 3)
-    g.add_edge(4, 0, 1)
-    g.add_edge(5, 4, 8)
-    g.add_edge(5, 2, 1)
-    g.print_yourself()
-
-    g2 = GraphForBFS.build_graph('words_file.txt')
-
-    g2.bfs(g2.get_vertex('foul'))
-    g2.traverse('sale')
+    ...

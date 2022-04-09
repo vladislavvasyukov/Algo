@@ -93,13 +93,4 @@ def do_math(symbol, op1, op2):
 
 
 if __name__ == '__main__':
-    s1 = '()()()'
-    s2 = '((()))'
-    s3 = '())('
-    for s in (s1, s2, s3):
-        print(parenthesis_checker(s))
-    # print(infix_to_postfix("( 1 + 2 ) * ( 3 + 4 )"))
-    st = infix_to_postfix("( 1 + 2 ) * ( 3 + 4 )")
-    # print(st)
-    print(calculate(st))
-
+    ...
