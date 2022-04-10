@@ -1,7 +1,7 @@
 from collections import namedtuple
 
 
-def knapsack_without_repetitions(total_weight, elements):
+def knapsack_without_repetitions(total_weight: int, elements):
     matrix = []
     for i in range(total_weight+1):
         row = [None for _ in range(len(elements)+1)]
@@ -30,7 +30,7 @@ def knapsack_without_repetitions(total_weight, elements):
     return matrix[total_weight][len(elements)]
 
 
-def knapsack_with_repetitions(total_weight, elements):
+def knapsack_with_repetitions(total_weight: int, elements):
     result = [0] * (total_weight+1)
     for weight in range(1, total_weight+1):
         for element in elements:
