@@ -18,20 +18,20 @@ class Stack:
         return len(self.items)
 
 
-def parenthesis_checker(string):
-    stack = Stack()
+def parenthesis_checker(expression):
+    stack = 0
     balanced = True
-    for ch in string:
+    for ch in expression:
         if ch == '(':
-            stack.push(ch)
+            stack += 1
         else:
-            if len(stack) == 0:
+            if stack == 0:
                 balanced = False
                 break
             else:
-                stack.pop()
+                stack -= 1
 
-    return balanced and len(stack) == 0
+    return balanced and stack == 0
 
 
 def infix_to_postfix(string):
