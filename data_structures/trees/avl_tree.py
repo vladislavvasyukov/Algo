@@ -154,7 +154,3 @@ class AvlTree:
         if node.left.node:
             print('\t' * level, '    \\')
             self.display(node.left.node, level + 1)
-
-
-if __name__ == "__main__":
-    ...

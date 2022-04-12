@@ -1,6 +1,3 @@
-from random import randint
-
-
 def naive_search(text, pattern):
     text_length = len(text)
     pattern_length = len(pattern)
@@ -39,15 +36,3 @@ def rabin_karp_matcher(text, pattern, d, q):
             t = (t*d+ord(text[s+m])) % q  # add letter s+m
             t = (t+q) % q  # make sure that t >= 0
     return result
-
-
-if __name__ == '__main__':
-    print(naive_search('aaabbb', 'b'))
-    print(naive_search('aaabbb', 'bb'))
-    print(naive_search('aaabbb', 'bbb'))
-    print(naive_search('aaabbb', 'bbbb'))
-
-    print()
-
-    print(rabin_karp_matcher("3141592653589793", "26", 257, 11))
-    print(rabin_karp_matcher("xxxxx", "xx", 40999999, 999999937))

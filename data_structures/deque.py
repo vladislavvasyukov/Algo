@@ -31,7 +31,3 @@ def palindrome_checker(string):
             checked = False
             break
     return checked
-
-
-if __name__ == '__main__':
-    ...

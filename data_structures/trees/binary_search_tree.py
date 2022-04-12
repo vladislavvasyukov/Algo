@@ -312,7 +312,3 @@ class BinarySearchTree:
                 array.append(node.left_child)
             if node.right_child:
                 array.append(node.right_child)
-
-
-if __name__ == '__main__':
-    ...

@@ -10,7 +10,3 @@ def change_money(money, coins):
                     min_count_coins[m] = num_coins
 
     return min_count_coins[money]
-
-
-if __name__ == '__main__':
-    print(change_money(40, [25, 20, 10, 5]))

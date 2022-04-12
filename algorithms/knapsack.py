@@ -42,13 +42,11 @@ def knapsack_with_repetitions(total_weight: int, elements):
     return result[total_weight]
 
 
-if __name__ == '__main__':
+def get_elements():
     Element = namedtuple('Element', ['weight', 'value'])
-    elements = [
+    return [
         Element(value=30, weight=6),
         Element(value=14, weight=3),
         Element(value=16, weight=4),
         Element(value=9, weight=2),
     ]
-    print(knapsack_without_repetitions(10, elements))
-    print(knapsack_with_repetitions(10, elements))

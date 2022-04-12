@@ -41,7 +41,3 @@ class DisjointSets:
                 max_high = high
 
         return max_high
-
-
-if __name__ == '__main__':
-    ...

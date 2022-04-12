@@ -147,7 +147,3 @@ class SingleLinkedList:
                 print(n.key, end=" ")
                 n = n.next
         print()
-
-
-if __name__ == '__main__':
-    ...

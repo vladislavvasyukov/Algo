@@ -51,7 +51,3 @@ class HashTable:
 
     def __setitem__(self, key, value):
         self.put(key, value)
-
-
-if __name__ == '__main__':
-    ...

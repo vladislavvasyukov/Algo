@@ -30,10 +30,3 @@ def print_matrix(matrix, first, second):
         tmp = ' \t' if i == 0 else f'{first[i-1]}\t'
         print(' '.join([tmp] + [str(a) + '\t' for a in row]))
     print("*"*(len(second)+1))
-
-
-if __name__ == '__main__':
-    print("Input two words:")
-    first_word = input()
-    second_word = input()
-    print(edit_distance(first_word, second_word))

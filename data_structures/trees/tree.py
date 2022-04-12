@@ -1,4 +1,5 @@
 import operator
+
 from data_structures.stack import Stack
 
 
@@ -35,10 +36,10 @@ class BinaryTree:
         self.left_child = None
         self.right_child = None
 
-    def get_left_child(self):
+    def get_left_child(self) -> "BinaryTree":
         return self.left_child
 
-    def get_right_child(self):
+    def get_right_child(self) -> "BinaryTree":
         return self.right_child
 
     def get_root_val(self):
@@ -152,7 +153,3 @@ class BinaryTree:
         if self.right_child:
             self.right_child.post_order()
         print(self.get_root_val())
-
-
-if __name__ == '__main__':
-    ...

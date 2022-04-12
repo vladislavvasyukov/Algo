@@ -75,7 +75,3 @@ class SplayTree(BinarySearchTree):
         self.splay(current_node.next())
         self.splay(current_node)
         super().remove(current_node)
-
-
-if __name__ == '__main__':
-    ...

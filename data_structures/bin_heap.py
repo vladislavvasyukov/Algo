@@ -114,7 +114,3 @@ class BinHeap:
             result.append(heap.extract_max())
 
         return result
-
-
-if __name__ == '__main__':
-    ...

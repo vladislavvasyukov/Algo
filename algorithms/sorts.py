@@ -1,6 +1,3 @@
-from data_structures.bin_heap import BinHeap
-
-
 def merge_sort(array):
     if len(array) > 1:
         mid = len(array) // 2
@@ -100,11 +97,6 @@ def partition3(array, left, right):
 def insertion_sort(array):
     for i in range(1, len(array)):
         j = i
-        while j > 0 and data[j] < data[j-1]:
-            data[j - 1], data[j] = data[j], data[j-1]
+        while j > 0 and array[j] < array[j-1]:
+            array[j - 1], array[j] = array[j], array[j-1]
             j -= 1
-
-
-if __name__ == '__main__':
-    data = [54, 26, 93, -99, 17, 17, -101, 55, 17, -99, 77, 31, 44, 55, 20]
-    print(data)

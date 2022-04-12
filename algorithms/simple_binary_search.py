@@ -13,7 +13,3 @@ def binary_search(array, value):
             right = mid - 1
 
     return -1
-
-
-if __name__ == '__main__':
-    print(binary_search([-2, 0, 3, 3, 9, 23, 32, 89], -2))

@@ -10,13 +10,3 @@ def gcd(num1, num2):
 
 def lcm(num1, num2):
     return (num1 * num2) / gcd(num1, num2)
-
-
-if __name__ == '__main__':
-    print(gcd(12, 30))
-    print(gcd(120, 15))
-    print(gcd(220, 300))
-
-    print(lcm(12, 30))
-    print(lcm(120, 15))
-    print(lcm(220, 300))

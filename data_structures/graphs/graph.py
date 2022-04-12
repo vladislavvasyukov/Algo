@@ -92,7 +92,3 @@ class GraphForBFS(Graph):
             print(vertex.get_id())
             vertex = vertex.prev_vertex
         print(vertex.get_id())
-
-
-if __name__ == '__main__':
-    ...
