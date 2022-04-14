@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class Node:
     def __init__(self, key=None, next=None):
         self.key = key
@@ -85,6 +88,16 @@ class SingleLinkedList:
                 current = current.next
 
         return False
+
+    def find_node(self, key) -> Optional[Node]:
+        current = self.head
+        while current is not None:
+            if current.key == key:
+                return current
+            else:
+                current = current.next
+
+        return None
 
     def erase(self, key):
         """remove key from list"""

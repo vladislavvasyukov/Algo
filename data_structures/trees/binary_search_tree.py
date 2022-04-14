@@ -92,8 +92,8 @@ class TreeNode:
 
 
 class BinarySearchTree:
-    def __init__(self):
-        self.root = None
+    def __init__(self, root=None):
+        self.root = root
         self.size = 0
 
     def __len__(self):
