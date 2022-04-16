@@ -8,8 +8,8 @@ class Graph:
         self.num_vertices = 0
         self.num_edges = 0
 
-    def add_vertex(self, key):
-        self.vertex_list[key] = Vertex(key)
+    def add_vertex(self, vertex_id):
+        self.vertex_list[vertex_id] = Vertex(vertex_id)
         self.num_vertices += 1
 
     def get_vertex(self, n):

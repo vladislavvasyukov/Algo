@@ -1,6 +1,6 @@
 class Vertex:
-    def __init__(self, key):
-        self.id = key
+    def __init__(self, vertex_id):
+        self.id = vertex_id
         self.connected_to = {}
 
     def add_neighbor(self, nbr, weight=0):
@@ -16,9 +16,7 @@ class Vertex:
         return self.connected_to[nbr]
 
     def __str__(self):
-        return '{id} connected to: {list_neighbors}'.format(
-            id=self.id, list_neighbors=str([x.id for x in self.connected_to])
-        )
+        return f'{self.id} connected to: {str([x.id for x in self.connected_to])}'
 
 
 class VertexForBFS(Vertex):

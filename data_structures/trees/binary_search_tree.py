@@ -69,19 +69,19 @@ class TreeNode:
                 self.parent.right_child = self.right_child
             self.right_child.parent = self.parent
 
-    def find_min(self):
+    def find_min(self) -> "TreeNode":
         current = self
         while current.has_left_child():
             current = current.left_child
         return current
 
-    def next(self):
+    def next(self) -> "TreeNode":
         if self.has_right_child():
             return self.right_child.find_min()
         else:
             return self.right_ancestor()
 
-    def right_ancestor(self):
+    def right_ancestor(self) -> "TreeNode":
         if not self.parent:
             return self
 
