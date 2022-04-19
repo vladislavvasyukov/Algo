@@ -20,18 +20,16 @@ class Stack:
 
 def parenthesis_checker(expression):
     stack = 0
-    balanced = True
     for ch in expression:
         if ch == '(':
             stack += 1
         else:
             if stack == 0:
-                balanced = False
-                break
+                return False
             else:
                 stack -= 1
 
-    return balanced and stack == 0
+    return stack == 0
 
 
 def infix_to_postfix(string):
