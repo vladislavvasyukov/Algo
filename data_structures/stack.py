@@ -32,8 +32,8 @@ def parenthesis_checker(expression):
     return stack == 0
 
 
-def infix_to_postfix(string):
-    prec = {
+def infix_to_postfix(expression: str):
+    priority_operations_dict = {
         "/": 3,
         "*": 3,
         "+": 2,
@@ -43,26 +43,26 @@ def infix_to_postfix(string):
 
     stack = Stack()
     postfix_list = []
-    infix_list = string.split()
-    for el in infix_list:
-        if el.isdigit():
-            postfix_list.append(el)
-        elif el == '(':
-            stack.push(el)
-        elif el == ')':
-            top_el = stack.pop()
-            while top_el != '(':
-                postfix_list.append(top_el)
-                top_el = stack.pop()
+    infix_list = expression.split()
+    for token in infix_list:
+        if token.isdigit():
+            postfix_list.append(token)
+        elif token == "(":
+            stack.push(token)
+        elif token == ")":
+            top_token = stack.pop()
+            while top_token != "(":
+                postfix_list.append(top_token)
+                top_token = stack.pop()
         else:
-            while len(stack) > 0 and prec[stack.peek()] >= prec[el]:
+            while len(stack) > 0 and priority_operations_dict[stack.peek()] >= priority_operations_dict[token]:
                 postfix_list.append(stack.pop())
-            stack.push(el)
+            stack.push(token)
 
     while len(stack) > 0:
         postfix_list.append(stack.pop())
 
-    return ' '.join(postfix_list)
+    return " ".join(postfix_list)
 
 
 def calculate(postfix_string):
