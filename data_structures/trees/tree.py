@@ -65,28 +65,28 @@ class BinaryTree:
         self.key = value
 
     @classmethod
-    def build_parse_tree(cls, fpexp):
+    def build_parse_tree(cls, expression):
         p_stack = Stack()
         e_tree = cls('')
         p_stack.push(e_tree)
         current_tree = e_tree
-        for i in fpexp.split():
-            if i == '(':
-                current_tree.insert_left('')
+        for token in expression.split():
+            if token == "(":
+                current_tree.insert_left("")
                 p_stack.push(current_tree)
                 current_tree = current_tree.get_left_child()
-            elif i.isdigit():
-                current_tree.set_root_val(int(i))
+            elif token.isdigit():
+                current_tree.set_root_val(int(token))
                 current_tree = p_stack.pop()
-            elif i in ['+', '-', '*', '/']:
-                current_tree.set_root_val(i)
-                current_tree.insert_right('')
+            elif token in ["+", "-", "*", "/"]:
+                current_tree.set_root_val(token)
+                current_tree.insert_right("")
                 p_stack.push(current_tree)
                 current_tree = current_tree.get_right_child()
-            elif i == ')':
+            elif token == ")":
                 current_tree = p_stack.pop()
             else:
-                raise Exception('unknown symbol: ', i)
+                raise Exception("Unknown token: ", token)
         return e_tree
 
     def evaluate(self) -> int:
