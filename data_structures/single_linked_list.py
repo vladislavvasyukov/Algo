@@ -2,9 +2,9 @@ from typing import Optional
 
 
 class Node:
-    def __init__(self, key=None, next=None):
+    def __init__(self, key: int = None, next_node=None):
         self.key = key
-        self.next = next
+        self.next_node = next_node
 
 
 class SingleLinkedList:
@@ -14,7 +14,7 @@ class SingleLinkedList:
 
     def push_front(self, key):
         """add to front"""
-        node = Node(key=key, next=self.head)
+        node = Node(key=key, next_node=self.head)
         self.head = node
         if self.tail is None:
             self.tail = self.head
@@ -34,7 +34,7 @@ class SingleLinkedList:
             raise Exception("pop_front from empty list")
 
         key = self.head.key
-        self.head = self.head.next
+        self.head = self.head.next_node
         if self.head is None:
             self.tail = None
 
@@ -47,7 +47,7 @@ class SingleLinkedList:
             self.head = node
             self.tail = node
         else:
-            self.tail.next = node
+            self.tail.next_node = node
             self.tail = node
 
     def top_back(self):
@@ -69,10 +69,10 @@ class SingleLinkedList:
             self.tail = None
         else:
             p = self.head
-            while p.next.next is not None:
-                p = p.next
-            key = p.next.key
-            p.next = None
+            while p.next_node.next_node is not None:
+                p = p.next_node
+            key = p.next_node.key
+            p.next_node = None
             self.tail = p
 
         return key
@@ -85,7 +85,7 @@ class SingleLinkedList:
             if current.key == key:
                 return True
             else:
-                current = current.next
+                current = current.next_node
 
         return False
 
@@ -95,7 +95,7 @@ class SingleLinkedList:
             if current.key == key:
                 return current
             else:
-                current = current.next
+                current = current.next_node
 
         return None
 
@@ -106,22 +106,22 @@ class SingleLinkedList:
             raise Exception("key is not in list")
 
         if self.head.key == key:
-            self.head = self.head.next
+            self.head = self.head.next_node
             if self.head is None:
                 self.tail = None
             return
 
         current = self.head
-        while current.next is not None:
-            if current.next.key == key:
+        while current.next_node is not None:
+            if current.next_node.key == key:
                 break
-            current = current.next
+            current = current.next_node
 
-        if current.next is None:
+        if current.next_node is None:
             raise Exception("item not found in the list")
         else:
-            current.next = current.next.next
-            if current.next is None:
+            current.next_node = current.next_node.next_node
+            if current.next_node is None:
                 self.tail = current
 
     def empty(self):
@@ -129,24 +129,24 @@ class SingleLinkedList:
 
         return self.head is None
 
-    def add_before(self, node, key):
+    def add_before(self, node: Node, key: int):
         """adds key before node"""
 
-        new_node = Node(key=key, next=node)
+        new_node = Node(key=key, next_node=node)
 
         if self.head == node:
             self.head = new_node
         else:
             current_node = self.head
-            while current_node.next != node is not None:
-                current_node = current_node.next
+            while current_node.next_node != node:
+                current_node = current_node.next_node
 
-            current_node.next = new_node
+            current_node.next_node = new_node
 
     def add_after(self, node, key):
         """adds key after node"""
-        new_node = Node(key=key, next=node.next)
-        node.next = new_node
+        new_node = Node(key=key, next_node=node.next_node)
+        node.next_node = new_node
         if self.tail == node:
             self.tail = new_node
 
@@ -158,5 +158,5 @@ class SingleLinkedList:
             n = self.head
             while n is not None:
                 print(n.key, end=" ")
-                n = n.next
+                n = n.next_node
         print()
