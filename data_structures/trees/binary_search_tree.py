@@ -206,7 +206,7 @@ class BinarySearchTree:
     def find(self, key):
         return self._find(self.root, key)
 
-    def _find(self, node, key):
+    def _find(self, node: TreeNode, key):
         if node.key == key:
             return node
 
