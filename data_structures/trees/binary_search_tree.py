@@ -229,15 +229,15 @@ class BinarySearchTree:
         return result
 
     @classmethod
-    def merge_with_root(cls, tree_one, tree_two, root):
-        root.left_child = tree_one
-        root.right_child = tree_two
-        tree_one.parent = root
-        tree_two.parent = root
-        return root
+    def merge_with_root(cls, tree_one_root, tree_two_root, root) -> 'BinarySearchTree':
+        root.left_child = tree_one_root
+        root.right_child = tree_two_root
+        tree_one_root.parent = root
+        tree_two_root.parent = root
+        return cls(root=root)
 
     @classmethod
-    def merge(cls, tree_one, tree_two):
+    def merge(cls, tree_one, tree_two) -> 'BinarySearchTree':
         """
         Input: tree_one and tree_two with all keys in tree_one's tree smaller than those in tree_two's
         Output: The root of a new tree with all the elements of both trees
@@ -246,8 +246,8 @@ class BinarySearchTree:
 
         node = tree_one.find(math.inf)
         tree_one.delete(node.key)
-        cls.merge_with_root(tree_one, tree_two, node)
-        return node
+        node.parent = None
+        return cls.merge_with_root(tree_one.root, tree_two.root, node)
 
     def get_depth(self):
         return self._get_depth(self.root)
