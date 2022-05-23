@@ -246,7 +246,6 @@ class BinarySearchTree:
 
         node = tree_one.find(math.inf)
         tree_one.delete(node.key)
-        node.parent = None
         return cls.merge_with_root(tree_one.root, tree_two.root, node)
 
     def get_depth(self):
