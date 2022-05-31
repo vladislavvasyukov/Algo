@@ -11,7 +11,7 @@ class Stack:
     def peek(self):
         return self.items[-1]
 
-    def empty(self):
+    def is_empty(self) -> bool:
         return len(self.items) == 0
 
     def __len__(self):
@@ -19,17 +19,24 @@ class Stack:
 
 
 def parenthesis_checker(expression):
-    stack = 0
-    for ch in expression:
-        if ch == '(':
-            stack += 1
+    stack = Stack()
+    pairs = {
+        "(": ")",
+        "[": "]",
+        "{": "}",
+    }
+    for symbol in expression:
+        if symbol in pairs:
+            stack.push(symbol)
         else:
-            if stack == 0:
+            if stack.is_empty():
                 return False
-            else:
-                stack -= 1
 
-    return stack == 0
+            top = stack.pop()
+            if pairs[top] != symbol:
+                return False
+
+    return stack.is_empty()
 
 
 def infix_to_postfix(expression: str):
