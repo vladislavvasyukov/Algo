@@ -62,14 +62,14 @@ class SplayTree(BinarySearchTree):
         y.right_child = node
         node.parent = y
 
-    def find(self, key):
-        n = super().find(key)
+    def find_closest_node(self, key):
+        n = super().find_closest_node(key)
         self.splay(n)
         return n
 
     def put(self, key, value=None):
         super().put(key, value)
-        self.find(key)
+        self.find_closest_node(key)
 
     def remove(self, current_node):
         self.splay(current_node.next())

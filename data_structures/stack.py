@@ -14,9 +14,6 @@ class Stack:
     def is_empty(self) -> bool:
         return len(self.items) == 0
 
-    def __len__(self):
-        return len(self.items)
-
 
 def parenthesis_checker(expression):
     stack = Stack()
@@ -62,11 +59,11 @@ def infix_to_postfix(expression: str):
                 postfix_list.append(top_token)
                 top_token = stack.pop()
         else:
-            while len(stack) > 0 and priority_operations_dict[stack.peek()] >= priority_operations_dict[token]:
+            while not stack.is_empty() and priority_operations_dict[stack.peek()] >= priority_operations_dict[token]:
                 postfix_list.append(stack.pop())
             stack.push(token)
 
-    while len(stack) > 0:
+    while not stack.is_empty():
         postfix_list.append(stack.pop())
 
     return " ".join(postfix_list)

@@ -51,6 +51,7 @@ class TreeNode:
             self.right_child.parent = self
 
     def splice_out(self):
+        # TODO: update logic
         """
         Метод как-бы отсекает узел от дерева
         """
@@ -203,25 +204,25 @@ class BinarySearchTree:
     def __delitem__(self, key):
         self.delete(key)
 
-    def find(self, key):
-        return self._find(self.root, key)
+    def find_closest_node(self, key):
+        return self._find_closest_node(self.root, key)
 
-    def _find(self, node: TreeNode, key):
+    def _find_closest_node(self, node: TreeNode, key):
         if node.key == key:
             return node
 
         if node.key > key:
             if node.has_left_child():
-                node = self._find(node.left_child, key)
+                node = self._find_closest_node(node.left_child, key)
         else:
             if node.has_right_child():
-                node = self._find(node.right_child, key)
+                node = self._find_closest_node(node.right_child, key)
 
         return node
 
     def range_search(self, left, right):
         result = []
-        node = self.find(left)
+        node = self.find_closest_node(left)
         while node.key <= right:
             if node.key >= left:
                 result.append(node)
@@ -244,7 +245,7 @@ class BinarySearchTree:
         """
         import math
 
-        node = tree_one.find(math.inf)
+        node = tree_one.find_closest_node(math.inf)
         tree_one.delete(node.key)
         return cls.merge_with_root(tree_one.root, tree_two.root, node)
 
