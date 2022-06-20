@@ -42,7 +42,6 @@ def shell_sort(array):
             j = i
             while j >= h and array[j-h] > array[j]:
                 array[j-h], array[j] = array[j], array[j-h]
-                print(array)
                 j -= h
         h = h // 3
 

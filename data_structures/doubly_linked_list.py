@@ -1,8 +1,8 @@
 class Node:
-    def __init__(self, key=None, next=None, prev=None):
+    def __init__(self, key=None, next_node=None, prev_node=None):
         self.key = key
-        self.next = next
-        self.prev = prev
+        self.next_node = next_node
+        self.prev_node = prev_node
 
 
 class DoublyLinkedList:
@@ -20,8 +20,8 @@ class DoublyLinkedList:
             self.head = None
             self.tail = None
         else:
-            self.tail = self.tail.prev
-            self.tail.next = None
+            self.tail = self.tail.prev_node
+            self.tail.next_node = None
 
         return key
 
@@ -32,24 +32,24 @@ class DoublyLinkedList:
             self.head = node
             self.tail = node
         else:
-            self.tail.next = node
-            node.prev = self.tail
+            self.tail.next_node = node
+            node.prev_node = self.tail
             self.tail = node
 
-    def add_after(self, node, key):
+    def add_after(self, node: Node, key):
         """adds key after node"""
-        new_node = Node(key=key, next=node.next, prev=node)
-        node.next = new_node
-        if new_node.next is not None:
-            new_node.next.prev = new_node
+        new_node = Node(key=key, next_node=node.next, prev_node=node)
+        node.next_node = new_node
+        if new_node.next_node is not None:
+            new_node.next_node.prev_node = new_node
         if self.tail == node:
             self.tail = new_node
 
-    def add_before(self, node, key):
-        new_node = Node(key=key, next=node, prev=node.prev)
-        node.prev = new_node
-        if new_node.prev is not None:
-            new_node.prev.next = new_node
+    def add_before(self, node: Node, key):
+        new_node = Node(key=key, next_node=node, prev_node=node.prev_node)
+        node.prev_node = new_node
+        if new_node.prev_node is not None:
+            new_node.prev_node.next_node = new_node
         if self.head == node:  # is?
             self.head = new_node
 
@@ -61,5 +61,5 @@ class DoublyLinkedList:
             n = self.head
             while n is not None:
                 print(n.key, end=" ")
-                n = n.next
+                n = n.next_node
         print()
