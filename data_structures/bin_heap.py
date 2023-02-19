@@ -2,22 +2,22 @@ from math import inf
 
 
 class BinHeap:
-    FIRST_ELEMENT_INDEX = 1
+    FIRST_INDEX = 1
 
     def __init__(self):
-        self.heap_list = [0]
+        self.elems = [0]
         self.current_size = 0
 
     def sift_up(self, i):
-        while i > 1 and self.heap_list[i // 2] < self.heap_list[i]:
-            self.heap_list[i // 2], self.heap_list[i] = self.heap_list[i], self.heap_list[i // 2]
+        while i > 1 and self.elems[i // 2] < self.elems[i]:
+            self.elems[i // 2], self.elems[i] = self.elems[i], self.elems[i // 2]
             i = i // 2
 
     def sift_down(self, i):
         while True:
             max_child_index = self.get_max_child_index(i)
             if i != max_child_index:
-                self.heap_list[i], self.heap_list[max_child_index] = self.heap_list[max_child_index], self.heap_list[i]
+                self.elems[i], self.elems[max_child_index] = self.elems[max_child_index], self.elems[i]
                 i = max_child_index
             else:
                 break
@@ -30,11 +30,11 @@ class BinHeap:
         max_child_index = i
 
         left_child_index = 2 * i
-        if left_child_index <= self.current_size and self.heap_list[left_child_index] > self.heap_list[max_child_index]:
+        if left_child_index <= self.current_size and self.elems[left_child_index] > self.elems[max_child_index]:
             max_child_index = left_child_index
 
         right_child_index = 2 * i + 1
-        if right_child_index <= self.current_size and self.heap_list[right_child_index] > self.heap_list[max_child_index]:
+        if right_child_index <= self.current_size and self.elems[right_child_index] > self.elems[max_child_index]:
             max_child_index = right_child_index
 
         return max_child_index
@@ -43,7 +43,7 @@ class BinHeap:
         """
         Добавляет новый элемент в кучу
         """
-        self.heap_list.append(k)
+        self.elems.append(k)
         self.current_size += 1
         self.sift_up(self.current_size)
 
@@ -51,21 +51,21 @@ class BinHeap:
         """
         Удаляет и возвращает наименьший элемент кучи
         """
-        max_value = self.heap_list[self.FIRST_ELEMENT_INDEX]
-        self.heap_list[self.FIRST_ELEMENT_INDEX] = self.heap_list[self.current_size]
-        self.heap_list.pop()
+        max_value = self.elems[self.FIRST_INDEX]
+        self.elems[self.FIRST_INDEX] = self.elems[self.current_size]
+        self.elems.pop()
         self.current_size -= 1
-        self.sift_down(self.FIRST_ELEMENT_INDEX)
+        self.sift_down(self.FIRST_INDEX)
         return max_value
 
     def remove(self, i):
-        self.heap_list[i] = inf
+        self.elems[i] = inf
         self.sift_up(i)
         self.extract_max()
 
     def change_priority(self, i, p):
-        old_priority = self.heap_list[i]
-        self.heap_list[i] = p
+        old_priority = self.elems[i]
+        self.elems[i] = p
 
         if p > old_priority:
             self.sift_up(i)
@@ -82,7 +82,7 @@ class BinHeap:
     @classmethod
     def create_heap_from_array(cls, array):
         heap = cls()
-        heap.heap_list = array
+        heap.elems = array
         heap.current_size = len(array)
         array.insert(0, 0)
 
@@ -93,15 +93,12 @@ class BinHeap:
 
     @classmethod
     def heap_sort(cls, array):
-        heap = cls.create_heap_from_array(array)
+        h = cls.create_heap_from_array(array)
 
-        for i in range(heap.current_size-1):
-            tmp = heap.heap_list[heap.FIRST_ELEMENT_INDEX]
-            heap.heap_list[heap.FIRST_ELEMENT_INDEX] = heap.heap_list[heap.current_size]
-            heap.heap_list[heap.current_size] = tmp
-
-            heap.current_size -= 1
-            heap.sift_down(heap.FIRST_ELEMENT_INDEX)
+        for i in range(h.current_size-1):
+            h.elems[h.FIRST_INDEX], h.elems[h.current_size] = h.elems[h.current_size], h.elems[h.FIRST_INDEX],
+            h.current_size -= 1
+            h.sift_down(h.FIRST_INDEX)
 
         array.pop(0)
 
