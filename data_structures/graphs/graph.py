@@ -44,7 +44,27 @@ class GraphForBFS(Graph):
         self.num_vertices += 1
 
     @classmethod
-    def build_graph(cls, word_file):
+    def build_graph_from_array(cls, words):
+        d = {}
+        g = cls()
+        for word in words:
+            for i in range(len(word)):
+                bucket = word[:i] + '_' + word[i + 1:]
+
+                if bucket in d:
+                    d[bucket].append(word)
+                else:
+                    d[bucket] = [word]
+
+            for bucket in d.keys():
+                for word1 in d[bucket]:
+                    for word2 in d[bucket]:
+                        if word1 != word2:
+                            g.add_edge(word1, word2)
+        return g
+
+    @classmethod
+    def build_graph_from_file(cls, word_file):
         d = {}
         g = cls()
         with open(word_file, 'r') as f:
@@ -88,6 +108,8 @@ class GraphForBFS(Graph):
 
     def traverse(self, data):
         vertex = self.get_vertex(data)
+        if vertex is None:
+            return
         while vertex.prev_vertex:
             print(vertex.get_id())
             vertex = vertex.prev_vertex

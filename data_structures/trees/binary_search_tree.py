@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class TreeNode:
     def __init__(self, key, value, left=None, right=None, parent=None):
         self.key = key
@@ -301,14 +304,16 @@ class BinarySearchTree:
             cl += 1
 
     def level_traversal(self):
-        if self.root is None:
-            return
-
-        array = [self.root]
-        while array:
-            node = array.pop(0)
-            print(node.key, end=" ")
-            if node.left_child:
-                array.append(node.left_child)
-            if node.right_child:
-                array.append(node.right_child)
+        q = deque([self.root])
+        ans = []
+        while q:
+            ql = len(q)
+            r = 0
+            for i in range (ql):
+                n = q.popleft()
+                print(n.key, end=" ")
+                r += n.val
+                if n.left: q.append(n.left)
+                if n.right: q.append(n.right)
+            ans.append(r/ql)
+        return ans
