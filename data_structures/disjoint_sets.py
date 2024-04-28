@@ -1,4 +1,5 @@
 class DisjointSets:
+    # https://habr.com/ru/articles/104772/
 
     def __init__(self, size=0):
         self.parent = [None for _ in range(size)]
@@ -41,3 +42,28 @@ class DisjointSets:
                 max_high = high
 
         return max_high
+
+
+if __name__ == '__main__':
+    ds = DisjointSets(5)
+    ds.make_set(1)
+    ds.make_set(2)
+    ds.make_set(3)
+    ds.make_set(4)
+    ds.make_set(5)
+
+    ds.find(4)
+
+    ds.union(1, 4)
+    ds.union(3, 5)
+
+    ds.find(4)
+    ds.find(1)
+    ds.find(2)
+
+    ds.union(5, 2)
+
+    ds.find(5)
+    ds.find(3)
+
+    print()

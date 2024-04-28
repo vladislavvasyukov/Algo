@@ -1,18 +1,20 @@
-def can_be_segmented(s, words):
-    words = set(words)
-    n = len(s)
-    dp = [False] * (n + 1)
-    dp[0] = True
-    for i in range(1, n+1):
-        for j in range(i):
-            if not dp[j]:
-                continue
-            if s[j:i] in words:
-                dp[i] = True
-                break
-    return dp[n]
+def insert_fixup(self, z):
+    while z.parent.is_red():
+        if z.parent.is_left_child():
+            y = z.parent.parent.right
+            if y.is_red():
+                z.parent.set_black()
+                y.set_black()
+                z.parent.parent.set_red()
+            else:
+                if z.is_right_child():
+                    z = z.parent
+                    self.left_rotate(z)
+                z.parent.set_black()
+                z.parent.parent.set_red()
+                self.right_rotate(z.parent.parent)
+        else:
+            ...
 
 
-
-if __name__ == '__main__':
-    print(can_be_segmented("leetcodeleet", ["leet", "code"]))
+    self.root.set_black()
