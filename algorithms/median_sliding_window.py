@@ -1,63 +1,55 @@
-import collections
 import heapq
+from collections import defaultdict
 from typing import List
 
 
 class Solution:
-    # Time complexity N(log K)
-    # Space complexity O(k) + O(k) => O(k)
-    def medianSlidingWindow(self, nums: List[int], k: int) -> List[float]:
-        max_heap = []
-        min_heap = []
-        heap_dict = collections.defaultdict(int)
+    def __init(self, k):
+        self.k = k
+        self.lo = []  # max heap
+        self.hi = []  # min heap
+        self.ans = []
 
-        res = []
+    def _add_to_result(self):
+        if self.k % 2:
+            self.ans.append(self.hi[0])
+        else:
+            self.ans.append((self.hi[0] - self.lo[0]) / 2)
+
+    def medianSlidingWindow(self, nums: List[int], k: int) -> List[float]:
+        self.__init(k)
+        if not nums or not k:
+            return self.ans
 
         for i in range(k):
-            # в Python heap - это по умолчанию MinHeap, поэтому добавляем отрицательные значения
-            heapq.heappush(max_heap, -nums[i])
-            heapq.heappush(min_heap, -heapq.heappop(max_heap))
+            if len(self.lo) == len(self.hi):
+                heapq.heappush(self.hi, -heapq.heappushpop(self.lo, -nums[i]))
+            else:
+                heapq.heappush(self.lo, -heapq.heappushpop(self.hi, nums[i]))
 
-            if len(min_heap) > len(max_heap):
-                heapq.heappush(max_heap, -heapq.heappop(min_heap))
-
-        if k % 2 == 1:
-            median = -max_heap[0]
-            res.append(median)
-        else:
-            median = (-max_heap[0] + min_heap[0]) / 2
-            res.append(median)
-
+        self._add_to_result()
+        to_remove = defaultdict(int)
         for i in range(k, len(nums)):
-            prev_num = nums[i - k]
-            heap_dict[prev_num] += 1
+            heapq.heappush(self.lo, -heapq.heappushpop(self.hi, nums[i]))
+            out_num = nums[i-k]
+            if out_num > -self.lo[0]:
+                heapq.heappush(self.hi, -heapq.heappop(self.lo))
 
-            balance = -1 if prev_num <= median else 1
-            if nums[i] <= median:
-                balance += 1
-                heapq.heappush(max_heap, -nums[i])
-            else:
-                balance -= 1
-                heapq.heappush(min_heap, nums[i])
+            to_remove[out_num] += 1
+            while self.lo and to_remove[-self.lo[0]]:
+                to_remove[-self.lo[0]] -= 1
+                heapq.heappop(self.lo)
 
-            if balance < 0:
-                heapq.heappush(max_heap, -heapq.heappop(min_heap))
-            elif balance > 0:
-                heapq.heappush(min_heap, -heapq.heappop(max_heap))
+            while to_remove[self.hi[0]]:
+                to_remove[self.hi[0]] -= 1
+                heapq.heappop(self.hi)
 
-            while max_heap and heap_dict[-max_heap[0]] > 0:
-                heap_dict[-max_heap[0]] -= 1
-                heapq.heappop(max_heap)
+            self._add_to_result()
 
-            while min_heap and heap_dict[min_heap[0]] > 0:
-                heap_dict[min_heap[0]] -= 1
-                heapq.heappop(min_heap)
+        return self.ans
 
-            if k % 2 == 1:
-                median = -max_heap[0]
-                res.append(median)
-            else:
-                median = (-max_heap[0] + min_heap[0]) / 2
-                res.append(median)
-
-        return res
+if __name__ == '__main__':
+    # [1, -1, -1, 3, 5, 6]
+    print(Solution().medianSlidingWindow([1,3,-1,-3,5,3,6,7], 3))
+    # [2, 3, 3, 3, 2, 3, 2]
+    print(Solution().medianSlidingWindow([1,2,3,4,2,3,1,4,2], 3))
